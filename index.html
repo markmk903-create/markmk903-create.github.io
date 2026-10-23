@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name</title>
+<meta name="description" content="Personal website of Your Name.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232438ff'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%23ffd23f'/%3E%3C/svg%3E">
+<style>
+:root{--cobalt:#2438ff;--navy:#0a0f2c;--chalk:#eef1ff;--sun:#ffd23f;--mute:#3b4166}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--chalk);color:var(--navy);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.hero{background:var(--cobalt);color:#fff;min-height:100vh;min-height:100svh;padding:0 5vw 6vh;display:flex;flex-direction:column}
+nav{display:flex;justify-content:space-between;gap:16px;padding:26px 0;font-weight:600}
+nav div{display:flex;gap:22px}
+nav a{text-decoration:none}
+nav a:hover{text-decoration:underline;text-underline-offset:6px}
+.intro{margin-top:auto}
+.tag{font-size:1.1rem;margin-bottom:1rem;opacity:.9}
+h1{font-size:clamp(3.4rem,15.5vw,13rem);line-height:.92;font-weight:900;letter-spacing:-.05em;overflow:hidden;padding-bottom:.12em}
+h1 span{display:inline-block;transform:translateY(110%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*55ms)}
+@keyframes up{to{transform:none}}
+.roles{font-size:clamp(1.2rem,3vw,1.7rem);margin:1.6rem 0 2rem;max-width:30ch}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 26px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid #fff;transition:background .2s,color .2s}
+.btn.main{background:var(--sun);border-color:var(--sun);color:var(--navy)}
+.btn:hover{background:#fff;color:var(--cobalt);border-color:#fff}
+section{display:grid;grid-template-columns:minmax(120px,1fr) 3fr;gap:2rem;max-width:1100px;margin:auto;padding:84px 5vw;border-top:2px solid var(--navy)}
+section:first-of-type{border-top:0}
+h2{font-size:1.5rem;line-height:1.2}
+.body p{max-width:62ch;font-size:1.2rem}
+.body .skills{font-size:1.5rem;line-height:1.5;font-weight:600;max-width:34ch}
+.row{display:grid;grid-template-columns:1fr 2fr;gap:1rem;padding:20px 12px;margin:0 -12px;border-top:2px solid var(--navy);text-decoration:none;transition:background .2s}
+.row:last-child{border-bottom:2px solid var(--navy)}
+.row:hover{background:var(--sun)}
+.row b{font-size:1.25rem}
+.row span{color:var(--mute)}
+.mail{font-size:clamp(1.4rem,5vw,2.6rem);font-weight:800;letter-spacing:-.02em;text-underline-offset:8px;text-decoration-thickness:3px;overflow-wrap:anywhere}
+.mail:hover{background:var(--sun)}
+.links{display:flex;gap:20px;margin-top:20px;font-weight:600}
+footer{padding:30px 5vw;text-align:center;color:var(--mute);font-size:14px}
+@media(max-width:700px){section{grid-template-columns:1fr;gap:1rem;padding:60px 5vw}.row{grid-template-columns:1fr;gap:4px}nav div{gap:14px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){h1 span{animation:none;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+<nav><b id="logo"></b><div><a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#contact">Contact</a></div></nav>
+<div class="intro"><p class="tag" id="tag"></p><h1 id="name"></h1><p class="roles" id="roles"></p><div class="btns"><a class="btn main" href="#work">See my work</a><a class="btn" href="#contact">Contact me</a></div></div>
+</header>
+<section id="about"><h2>About</h2><div class="body"><p id="about-text"></p></div></section>
+<section id="skills"><h2>Skills</h2><div class="body"><p class="skills" id="skill-list"></p></div></section>
+<section id="work"><h2>Work</h2><div class="body" id="work-list"></div></section>
+<section id="contact"><h2>Contact</h2><div class="body"><p id="contact-text"></p><p style="margin-top:14px"><a class="mail" id="mail"></a></p><div class="links" id="socials"></div></div></section>
+<footer id="foot"></footer>
+<script>
+/* EDIT ONLY THIS BLOCK. The whole site is built from it. */
+const SITE={
+ name:"Your Name",
+ tag:"Hello, I am",
+ roles:"Curious learner. Problem solver. Builder of useful things.",
+ about:"Write three or four sentences here. Say who you are, what you are learning, and what you want to do next. Be specific. Real details are more interesting than big claims.",
+ skills:["Communication","Research","Microsoft Excel","Teamwork","Public speaking","Problem solving"],
+ work:[
+  {title:"Project one",text:"One sentence on what you made and what came out of it.",link:"#"},
+  {title:"Project two",text:"One sentence on what you made and what came out of it.",link:"#"},
+  {title:"Project three",text:"One sentence on what you made and what came out of it.",link:"#"}
+ ],
+ contact:"Open to internships, collaborations, and good ideas.",
+ email:"you@example.com",
+ socials:[{label:"LinkedIn",url:"https://linkedin.com/in/yourname"},{label:"GitHub",url:"https://github.com/yourname"}]
+};
+/* Do not edit below this line. */
+const $=id=>document.getElementById(id);
+document.title=SITE.name;
+$("logo").textContent=SITE.name;
+$("tag").textContent=SITE.tag;
+$("name").setAttribute("aria-label",SITE.name);
+$("name").innerHTML=[...SITE.name].map((c,i)=>c===" "?" ":`<span aria-hidden="true" style="--i:${i}">${c}</span>`).join("");
+$("roles").textContent=SITE.roles;
+$("about-text").textContent=SITE.about;
+$("skill-list").textContent=SITE.skills.join(", ")+".";
+$("work-list").innerHTML=SITE.work.map(w=>`<a class="row" href="${w.link}"><b>${w.title}</b><span>${w.text}</span></a>`).join("");
+$("contact-text").textContent=SITE.contact;
+$("mail").href="mailto:"+SITE.email;
+$("mail").textContent=SITE.email;
+$("socials").innerHTML=SITE.socials.map(s=>`<a href="${s.url}">${s.label}</a>`).join("");
+$("foot").textContent="© "+new Date().getFullYear()+" "+SITE.name;
+</script>
+</body>
+</html>
